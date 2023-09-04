@@ -12,6 +12,17 @@ enum class Day {Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};
 
 
 int main(int argc, char **argv) {
+    
+    
+
+    return 0;
+}
+
+int add_numbers(int first_number, int second_number) {
+    return first_number + second_number;
+}
+
+void try_data() {
     unsigned long age {99UL};
     unsigned short price {10u};
 
@@ -29,9 +40,17 @@ int main(int argc, char **argv) {
     long length {5};
     long area {width * length};
 
+    if (age % 2) {
+
+    } else {
+
+    }
+
     std::clog << "Logging: " << std::endl;
     std::cerr << "Error: " << std::endl;
+}
 
+void try_operation() {
     switch(int count = 4; count) {
         case 0:
             std::cerr << "cannot be 0";
@@ -67,12 +86,6 @@ int main(int argc, char **argv) {
 
     if (std::isupper(yes)) {}
 
-    if (age % 2) {
-
-    } else {
-
-    }
-
     auto m {10};
 
     for (size_t i {}; i < 5; ++i) {}
@@ -95,8 +108,9 @@ int main(int argc, char **argv) {
     char no = is_valid ? 'N' : 'Y';
 
     std::cout << std::boolalpha << is_valid;
+}
 
-    // arrays
+void try_array() {
     double temperatures[366];
     temperatures[3] = 99.0;
 
@@ -106,15 +120,35 @@ int main(int argc, char **argv) {
     for (size_t i {}; i < std::size(height); ++i) {}
 
     for (auto x : values) {}
+}
 
-    // pointers
+void try_pointer() {
+    int* p_number {new int {83}};
+
     int int_var {43};
     int* p_number {};
     int* p_int {&int_var};
 
-    return 0;
-}
+    std::cout << *p_number << std::endl;
 
-int add_numbers(int first_number, int second_number) {
-    return first_number + second_number;
+    delete p_number;
+    p_number = nullptr;
+
+    for (size_t i {}; i < 1000000; ++i) {
+        try {
+            int* lots_of_ints {new int[1000000]};
+        } catch(std::exception& ex) {
+            std::cout << "caught exception: " << ex.what() << std::endl;
+        }
+    }
+
+    for (size_t i {}; i < 1000000; ++i) {
+        int* data = new(std::nothrow) int[1000000];
+
+        if (data != nullptr) {
+            std::cout << "data allocated" << std::endl;
+        } else {
+            std::cout << "data allocation failed" << std::endl;
+        }
+    }
 }
