@@ -3,6 +3,8 @@
 #include <limits>
 #include <cctype>
 
+#include "cylinder.h"
+
 using biggies = unsigned long long;
 
 // typedef unsigned long long biggies;
@@ -11,9 +13,52 @@ using biggies = unsigned long long;
 enum class Day {Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday};
 
 
+template <typename T> T maximum(T a, T b);
+
+// template specialization
+template <>
+const char* maximum<const char*>(const char* a, const char* b);
+
+/*
+// concepts
+template <typename T>
+requires std::integral<T>
+T add(T a, T b) {
+    return a + b;
+}
+
+template<std::integral T>
+T add(T a, T b) {}
+
+auto add(std::integral auto a, std::integral auto b) {}
+
+template <typename T>
+T add(T a, T b) requires std::integral<T> {}
+*/
+
+
 int main(int argc, char **argv) {
+    int a {10};
+    int b {23};
+
+    double c {34.7};
+    double d {23.4};
+
+    std::string e {"hello"};
+    std::string f {"world"};
+
+    auto max = maximum<std::string>(e, f);
     
-    
+    // stack
+    Cylinder cylinder1(10, 2);
+    std::cout << cylinder1.volume() << std::endl;
+
+    // heap
+    Cylinder* cylinder2 = new Cylinder(11, 20);
+    std::cout << (*cylinder2).volume() << std::endl;
+    std::cout << cylinder2 -> volume() << std::endl;
+
+    delete cylinder2;
 
     return 0;
 }
@@ -200,4 +245,8 @@ void try_lambda() {
 
     // capture all by reference
     auto func4 = [&]() {};
+}
+
+template <typename T> T maximum(T a, T b) {
+    return (a > b) ? a : b;
 }
