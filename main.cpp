@@ -152,3 +152,52 @@ void try_pointer() {
         }
     }
 }
+
+void max_str(const std::string& input1, const std::string input2, std::string& output) {
+    if (input1 > input2) {
+        output = input1;
+    } else {
+        output = input2;
+    }
+}
+
+void try_lambda() {
+    auto func = []() {
+        std::cout << "Hello" << std::endl;
+    };
+
+    func();
+
+    // directly calling
+    []() {
+        std::cout << "Calling directly" << std::endl;
+    }();
+
+    [](double a, double b) {
+        std::cout << a + b << std::endl;
+    }(12.8, 1.5);
+
+    auto result = [](double a, double b) -> double {
+        return a + b;
+    }(12.1, 4.4);
+
+    std::cout << "result is " << [](double a, double b) { return a + b; } (4.5, 1.2) << std::endl;
+
+    // capture by value
+    int c {45};
+
+    auto func1 = [c]() {
+        std::cout << c << std::endl;
+    };
+
+    // capture by reference
+    auto func2 = [&c]() {
+        std::cout << c << std::endl;
+    };
+
+    // capture all by value
+    auto func3 = [=]() {};
+
+    // capture all by reference
+    auto func4 = [&]() {};
+}
